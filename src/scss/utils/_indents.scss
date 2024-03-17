@@ -6,7 +6,7 @@
 
 @mixin indent($px, $size: '') {
   @include indent-margin($px, $size);
-  @include indend-padding($px, $size);
+  @include indent-padding($px, $size);
 }
 
 @mixin indent-margin($px, $size: '') {
@@ -64,9 +64,9 @@
   }
 }
 
-@mixin indend-padding($px, $size: '') {
-  @include indend-padding-h($px, $size);
-  @include indend-padding-v($px, $size);
+@mixin indent-padding($px, $size: '') {
+  @include indent-padding-h($px, $size);
+  @include indent-padding-v($px, $size);
 
   $postfix: if($size != '', -#{$size}, '');
 
@@ -77,7 +77,7 @@
   }
 }
 
-@mixin indend-padding-h($px, $size: '') {
+@mixin indent-padding-h($px, $size: '') {
   $postfix: if($size != '', -#{$size}, '');
 
   @include screen($size) {
@@ -98,7 +98,7 @@
   }
 }
 
-@mixin indend-padding-v($px, $size: '') {
+@mixin indent-padding-v($px, $size: '') {
   $postfix: if($size != '', -#{$size}, '');
 
   @include screen($size) {

@@ -1,3 +1,33 @@
+@use './palette' as palette;
+
+@import './utils/screen';
+
 html {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: palette.$white;
+}
+
+.h1 {
+  font-size: 80px;
+  line-height: 111.5%;
+  font-weight: 700;
+}
+
+.h2 {
+  font-size: 48px;
+  line-height: 124.5%;
+  font-weight: 700;
+}
+
+.text {
+  font-size: 21px;
+  line-height: 166.5%;
+  font-weight: 300;
+}
+
+.nav-link {
+  color: inherit;
+  font-size: 21px;
+  line-height: 166.5%;
+  font-weight: 400;
 }

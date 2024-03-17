@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use './palette' as palette;
+
+@import './utils/indents';
+@import './utils/breakpoints';
+
+@include indent-margin-v(4);
+@include indent-padding(12);
+@include indent(16);
+@include indent-padding(24);
+
+body {
+  background-color: palette.$black;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: map.get($breakpoints, xxl);
+}
+
+.header {
+  $size-coef: .7;
+
+  background: palette.$light-black;
+  background: linear-gradient(90deg, palette.$black 50%, palette.$light-black 90%);
+
+  .logo__title {
+    $font-size: 50px;
+    $line-height: 66px;
+
+    font-size: $font-size * $size-coef;
+    line-height: $line-height * $size-coef;
+    font-weight: 600;
+    color: palette.$blue;
+    letter-spacing: -.025em;
+
+    @include screen(sm) {
+      font-size: $font-size;
+      line-height: $line-height;
+    }
+  }
+
+  .logo__subtitle {
+    $font-size: 14px;
+
+    font-size: $font-size * $size-coef;
+    font-weight: 400;
+    letter-spacing: .19em;
+
+    @include screen(sm) {
+      font-size: $font-size;
+    }
+  }
+}
