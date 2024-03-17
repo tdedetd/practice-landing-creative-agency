@@ -24,6 +24,10 @@
       justify-content: space-between;
     }
 
+    .justify-end#{$postfix} {
+      justify-content: flex-end;
+    }
+
     .align-items-center#{$postfix} {
       align-items: center;
     }

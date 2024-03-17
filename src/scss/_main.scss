@@ -4,19 +4,52 @@
 @import './utils/indents';
 @import './utils/breakpoints';
 
+// util
+
 @include indent-margin-v(4);
 @include indent-padding(12);
 @include indent(16);
-@include indent-padding(24);
-
-body {
-  background-color: palette.$black;
-}
+@include indent(24);
+@include indent-margin-v(42);
+@include indent-margin-h(92);
+@include indent-padding-v(142);
+@include indent-padding(172);
 
 .container {
   margin: 0 auto;
   max-width: map.get($breakpoints, xxl);
 }
+
+.divider {
+  width: 100px;
+  height: 3px;
+  background-color: palette.$white;
+}
+
+.divider-blue {
+  width: 144px;
+  background-color: palette.$blue;
+}
+
+body {
+  background-color: palette.$black;
+}
+
+.btn {
+  background: none;
+  border: solid 3px palette.$blue;
+  padding: 12px 16px;
+  color: inherit;
+  font-size: 16px;
+  letter-spacing: .145em;
+  cursor: pointer;
+
+  &:hover {
+    border-color: palette.$white;
+  }
+}
+
+// page
 
 .header {
   $size-coef: .7;
@@ -49,6 +82,106 @@ body {
 
     @include screen(sm) {
       font-size: $font-size;
+    }
+  }
+}
+
+@function section-blue-gradient($angle) {
+  @return linear-gradient($angle, rgba(palette.$black, 0) 75%, palette.$blue 175%);
+}
+
+.section-welcome {
+  $image-bg: url('../assets/img/beautiful-woman-with-big-jewel.png') no-repeat bottom right;
+
+  background: $image-bg;
+  background:
+    section-blue-gradient(90deg),
+    $image-bg;
+
+  &__card {
+    max-width: 820px;
+  }
+}
+
+.section-about {
+  $image-bg: url('../assets/img/artificial-intelligence-robot.png') no-repeat bottom left;
+
+  background: $image-bg;
+  background:
+    section-blue-gradient(270deg),
+    $image-bg;
+
+  &__card {
+    max-width: 700px;
+  }
+}
+
+.section-services {
+  &__card {
+    max-width: 590px;
+  }
+
+  &__services {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    .service-card {
+      @function get-bg-gradient($angle) {
+        @return linear-gradient($angle, rgba(palette.$light-black, .15), rgba(palette.$blue, .15));
+      }
+
+      width: 300px;
+      height: 280px;
+      padding: 24px;
+      text-align: center;
+      background: palette.$light-black;
+
+      &:nth-child(1) {
+        background: get-bg-gradient(270deg);
+      }
+
+      &:nth-child(2) {
+        background: get-bg-gradient(0deg);
+      }
+
+      &:nth-child(3) {
+        background: get-bg-gradient(180deg);
+      }
+
+      &:nth-child(4) {
+        background: get-bg-gradient(90deg);
+      }
+
+      .h3 {
+        font-weight: 600;
+        letter-spacing: .06em;
+      }
+
+      .text {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.section-metrics {
+  padding: 78px 0;
+  text-align: center;
+  background: linear-gradient(90deg, rgba(palette.$black, 0), rgba(palette.$blue, .3));
+
+  .metrics-item {
+    width: 205px;
+
+    &__value {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1em;
+    }
+
+    .h3 {
+      font-weight: 400;
+      letter-spacing: .04em;
+      line-height: 122.5%;
     }
   }
 }

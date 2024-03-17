@@ -1,0 +1,5 @@
+@use '../palette' as palette;
+
+.color-blue {
+  color: palette.$blue;
+}
