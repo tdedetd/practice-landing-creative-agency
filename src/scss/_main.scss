@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:math';
 @use './palette' as palette;
 
 @import './utils/indents';
@@ -216,5 +217,65 @@ body {
 
   .h2 {
     max-width: 700px;
+  }
+}
+
+.carousel-projects {
+  width: 100%;
+
+  & > .carousel-projects__images {
+    margin: 0 auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 800px;
+    margin-bottom: 50px;
+    position: relative;
+
+    & > .carousel-projects-images__item {
+      position: absolute;
+      width: auto;
+      height: 100%;
+      left: 0;
+      top: 0;
+      transition: transform .3s ease-in-out;
+
+      &:not(:last-child) {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  & > .carousel-projects__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > .carousel-projects-dot {
+      $size: 30px;
+      $center-size: 10px;
+
+      box-sizing: content-box;
+      width: $size;
+      height: $size;
+      border-radius: 0;
+      background: 0;
+      border: none;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: $center-size;
+        height: $center-size;
+        background: palette.$white;
+        left: math.div($size - $center-size, 2);
+        top: math.div($size - $center-size, 2);
+      }
+
+      &_selected {
+        border: solid 3px palette.$blue;
+      }
+    }
   }
 }
