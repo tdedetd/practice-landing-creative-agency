@@ -11,8 +11,9 @@
 @include indent-padding(12);
 @include indent(16);
 @include indent(24);
+@include indent-margin-v(32);
 @include indent-margin-v(42);
-@include indent-margin-h(92);
+@include indent-margin(92);
 @include indent-padding-v(142);
 @include indent-padding(172);
 
@@ -212,70 +213,218 @@ body {
 }
 
 .section-projects {
-  padding: 78px 0;
+  padding-top: 78px;
   text-align: center;
 
   .h2 {
     max-width: 700px;
   }
-}
 
-.carousel-projects {
-  width: 100%;
-
-  & > .carousel-projects__images {
-    margin: 0 auto;
-    overflow-x: hidden;
+  .carousel-projects {
     width: 100%;
-    height: 800px;
-    margin-bottom: 50px;
-    position: relative;
 
-    & > .carousel-projects-images__item {
-      position: absolute;
-      width: auto;
-      height: 100%;
-      left: 0;
-      top: 0;
-      transition: transform .3s ease-in-out;
+    & > .carousel-projects__images {
+      margin: 0 auto;
+      overflow-x: hidden;
+      width: 100%;
+      height: 800px;
+      margin-bottom: 50px;
+      position: relative;
 
-      &:not(:last-child) {
-        margin-right: 30px;
+      & > .carousel-projects-images__item {
+        position: absolute;
+        width: auto;
+        height: 800px;
+        left: 0;
+        top: 0;
+        transition: transform .3s ease-in-out;
+
+        &:not(:last-child) {
+          margin-right: 30px;
+        }
+      }
+    }
+
+    & > .carousel-projects__dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > .carousel-projects-dot {
+        $size: 30px;
+        $center-size: 10px;
+
+        box-sizing: content-box;
+        width: $size;
+        height: $size;
+        border-radius: 0;
+        background: 0;
+        border: none;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: $center-size;
+          height: $center-size;
+          background: palette.$white;
+          left: math.div($size - $center-size, 2);
+          top: math.div($size - $center-size, 2);
+        }
+
+        &_selected {
+          border: solid 3px palette.$blue;
+        }
       }
     }
   }
+}
 
-  & > .carousel-projects__dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.section-why-us {
+  $gradient-radius: 1000px;
+  position: relative;
 
-    & > .carousel-projects-dot {
-      $size: 30px;
-      $center-size: 10px;
+  .radial-right-bottom,
+  .radial-left-top {
+    position: absolute;
+    z-index: -1;
+    width: $gradient-radius;
+    height: $gradient-radius * 2;
+  }
 
-      box-sizing: content-box;
-      width: $size;
-      height: $size;
-      border-radius: 0;
-      background: 0;
-      border: none;
-      position: relative;
-      cursor: pointer;
+  .radial-right-bottom {
+    right: 0;
+    bottom: -$gradient-radius;
+    background: radial-gradient(circle at 100% 50%, rgba(palette.$blue, .3) 0%, rgba(palette.$black, 0) 50%);
+  }
 
-      &::before {
-        content: '';
-        position: absolute;
-        width: $center-size;
-        height: $center-size;
-        background: palette.$white;
-        left: math.div($size - $center-size, 2);
-        top: math.div($size - $center-size, 2);
-      }
+  .radial-left-top {
+    left: 0;
+    top: -$gradient-radius;
+    background: radial-gradient(circle at 0% 50%, rgba(palette.$blue, .3) 0%, rgba(palette.$black, 0) 50%);
+  }
 
-      &_selected {
-        border: solid 3px palette.$blue;
+  .h2 {
+    font-size: 55px;
+    letter-spacing: .04em;
+  }
+
+  .h3 {
+    color: palette.$white;
+    font-weight: 400;
+  }
+
+  .divider-blue {
+    width: 110px;
+  }
+
+  &__left {
+    max-width: 760px;
+    margin-right: 62px;
+  }
+
+  &__right {
+    .why-us-list {
+      padding-left: 32px;
+
+      & > li {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          background: url('../assets/svg/check.svg') no-repeat left center;
+          left: -32px;
+          top: 0;
+          width: 21px;
+          height: 100%;
+        }
       }
     }
+  }
+}
+
+.section-review {
+  &__face-left,
+  &__face-right {
+    height: 932px;
+    flex-grow: 1;
+  }
+
+  &__face-left {
+    background: url('../assets/img/face-left.png') no-repeat top right;
+  }
+
+  &__face-right {
+    background: url('../assets/img/face-right.png') no-repeat top left;
+  }
+
+  &__content {
+    max-width: 750px;
+    padding: 92px;
+    background: palette.$black;
+
+    .h2 {
+      font-size: 55px;
+      letter-spacing: .04em;
+    }
+
+    .h3 {
+      color: palette.$white;
+      font-weight: 400;
+    }
+
+    .divider-blue {
+      width: 220px;
+    }
+
+    .review-card {
+      width: 100%;
+      padding: 32px 64px;
+      border-radius: 38px;
+      background: linear-gradient(0deg, rgba(palette.$light-black, .15), rgba(palette.$blue, .15));
+
+      &__avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      &__name {
+        font-weight: 700;
+      }
+
+      &__email {
+        color: palette.$blue;
+        font-style: italic;
+        font-weight: 300;
+        line-height: 166.5%;
+        letter-spacing: .04em;
+      }
+    }
+  }
+}
+
+.section-contacts {
+  $gradient-radius: 1000px;
+
+  padding: 132px 0;
+  position: relative;
+
+  .radial-right-top {
+    position: absolute;
+    z-index: -1;
+    width: $gradient-radius;
+    height: $gradient-radius * 2;
+
+    right: 0;
+    top: -$gradient-radius;
+    background: radial-gradient(circle at 100% 50%, rgba(palette.$blue, .3) 0%, rgba(palette.$black, 0) 50%);
+  }
+
+  &__left {
+    max-width: 590px;
   }
 }

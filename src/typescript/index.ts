@@ -22,6 +22,7 @@ function initCarousels(): void {
           const sizeCoef = relativeIndex === 0 ? 1 : 0.75;
           const x = container.clientWidth / 2 - item.clientWidth / 2 + relativeIndex * 700;
           item.style.transform = `translateX(${x}px) scale(${sizeCoef})`;
+          item.style.zIndex = String(100 - Math.abs(relativeIndex));
         },
         selectedIndex: 1,
       }

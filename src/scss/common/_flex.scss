@@ -44,6 +44,10 @@
       align-items: flex-end;
     }
 
+    .align-items-stretch#{$postfix} {
+      align-items: stretch;
+    }
+
     .flex-grow-1#{$postfix} {
       flex-grow: 1;
     }
