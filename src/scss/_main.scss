@@ -4,9 +4,10 @@
 
 @import './utils/indents';
 @import './utils/breakpoints';
+@import './utils/screen';
 
 // util
-
+@include indent-margin-h(0);
 @include indent-margin-v(4);
 @include indent-padding(12);
 @include indent(16);
@@ -16,6 +17,9 @@
 @include indent-margin(92);
 @include indent-padding-v(142);
 @include indent-padding(172);
+
+@include indent-margin-v(0, xxl);
+@include indent-margin-h(92, xxl);
 
 .container {
   margin: 0 auto;
@@ -143,24 +147,33 @@ body {
 }
 
 .section-services {
-  &__card {
-    max-width: 590px;
+  @include screen(xxl) {
+    &__card {
+      max-width: 590px;
+    }
   }
 
   &__services {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 12px;
+
+    @include screen(md) {
+      grid-template-columns: repeat(2, 0fr);
+    }
 
     .service-card {
       @function get-bg-gradient($angle) {
         @return linear-gradient($angle, rgba(palette.$light-black, .15), rgba(palette.$blue, .15));
       }
 
-      width: 300px;
       height: 280px;
       padding: 24px;
       text-align: center;
       background: palette.$light-black;
+
+      @include screen(md) {
+        width: 300px;
+      }
 
       &:nth-child(1) {
         background: get-bg-gradient(270deg);
@@ -195,6 +208,22 @@ body {
   text-align: center;
   background: linear-gradient(90deg, rgba(palette.$black, 0), rgba(palette.$blue, .3));
 
+  &__list {
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 0fr;
+    row-gap: 48px;
+
+    @include screen(md) {
+      grid-template-columns: repeat(2, 0fr);
+    }
+
+    @include screen(xl) {
+      justify-content: space-between;
+      grid-template-columns: repeat(4, 0fr);
+    }
+  }
+
   .metrics-item {
     width: 205px;
 
@@ -227,14 +256,18 @@ body {
       margin: 0 auto;
       overflow-x: hidden;
       width: 100%;
-      height: 800px;
+      height: 400px;
       margin-bottom: 50px;
       position: relative;
+
+      @include screen(lg) {
+        height: 800px;
+      }
 
       & > .carousel-projects-images__item {
         position: absolute;
         width: auto;
-        height: 800px;
+        height: 100%;
         left: 0;
         top: 0;
         transition: transform .3s ease-in-out;
@@ -284,6 +317,11 @@ body {
 .section-why-us {
   $gradient-radius: 1000px;
   position: relative;
+  overflow: hidden;
+
+  @include screen(lg) {
+    overflow: unset;
+  }
 
   .radial-right-bottom,
   .radial-left-top {

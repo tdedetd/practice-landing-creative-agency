@@ -5,6 +5,8 @@ initCarousels();
 initViewportEvents();
 
 function initCarousels(): void {
+  const getImgTranslateKoef = () => window.innerWidth >= 992 ? 700 : 300;
+
   window.addEventListener('load', () => {
     new Carousel<HTMLImageElement>({
       dots: {
@@ -20,7 +22,7 @@ function initCarousels(): void {
         containerId: 'carousel-projects-images',
         onSelectItem: ({ container, item, relativeIndex }): void => {
           const sizeCoef = relativeIndex === 0 ? 1 : 0.75;
-          const x = container.clientWidth / 2 - item.clientWidth / 2 + relativeIndex * 700;
+          const x = container.clientWidth / 2 - item.clientWidth / 2 + relativeIndex * getImgTranslateKoef();
           item.style.transform = `translateX(${x}px) scale(${sizeCoef})`;
           item.style.zIndex = String(100 - Math.abs(relativeIndex));
         },
