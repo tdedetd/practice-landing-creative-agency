@@ -5,7 +5,7 @@ initCarousels();
 initViewportEvents();
 
 function initCarousels(): void {
-  const getImgTranslateKoef = () => window.innerWidth >= 992 ? 700 : 300;
+  const getImgTranslateKoef = (): number => window.innerWidth >= 992 ? 700 : 300;
 
   window.addEventListener('load', () => {
     new Carousel<HTMLImageElement>({
